@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width">
+  <title>Garin</title>
+  <link href="style.css" rel="stylesheet" type="text/css">
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+  <script src="java/garinAudioC.js"></script>
+  <script
+    src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <audio id="garin" src="resources/audio/garin.mp3" preload="auto">
+        <audio id="sa" src="resources/audio/sa.mp3" preload="auto"></audio>
+        <audio id="mm" src="resources/audio/mm.mp3" preload="auto"></audio>
+        <audio id="cm" src="resources/audio/cm.mp3" preload="auto"></audio>
+        <audio id="aeb" src="resources/audio/aeb.mp3" preload="auto"></audio>
+
+        <img id="park" src="resources/images/park360.jpeg">
+        <img id="home" src="resources/images/home.jpg">
+        <img id="skyTexture" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+        <img id="play" src="resources/images/btnPlay.png" preload="auto">
+        <img id="pause" src="resources/btnPause.png" preload="auto">
+        <img id="stop" src="resources/images/btnStop.png" preload="auto"> <audio id="sa" src="resources/audio/sa.mp3"
+          preload="auto"></audio>
+        <audio id="mm" src="resources/audio/mm.mp3" preload="auto"></audio>
+        <audio id="cm" src="resources/audio/cm.mp3" preload="auto"></audio>
+        <audio id="aeb" src="resources/audio/aeb.mp3" preload="auto"></audio>
+        <img id="fatherG" src="resources/images/fatherG.jpg" preload="auto">
+        <img id="mackillop" src="resources/images/mackillop.jpg" preload="auto">
+        <img id="mcauley" src="resources/images/mcauley.jpg" preload="auto">
+        <img id="barbier" src="resources/images/barbier.jpg" preload="auto">
+        <img id="aubert" src="resources/images/aubert.jpg" preload="auto">
+    </a-assets>
+    <a-link href="index.html" title="Home Page" backgroundColor="black" position="-5.658 1.204 -2.547">
+      <a-image src="#park"></a-image>
+    </a-link>
+    <a-entity id=" cameraRig">
+      <a-entity id="head" camera wasd-controls look-controls>
+        <!--how is this affecting the movement?-->
+      </a-entity>
+      <a-entity teleport-controls="cameraRig: #cameraRig; type: parabolic; button: trigger;collisionEntities:#floor"
+        oculus-touch-controls="hand: right">
+        <!--how is this affecting the movement?-->
+      </a-entity>
+      <a-entity laser-controls="hand:left" line="color: red"></a-entity>
+      <!--what is this doing?-->
+      <a-camera>
+        <!-- why is this empty-->
+      </a-camera>
+      <a-sky src="#skyTexture"></a-sky>
+      <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
+      <a-box id="frontLeft" position="-1.824 0.993 -2.286" rotation="0 90 0" scale="0.2 2 0.2" color="#96514d"></a-box>
+      <a-box id="frontRight" position="1.866 1 -2.295" rotation="0 90 0" scale="0.2 2 0.2" color="#96514d"></a-box>
+      <a-box id="frontLeftRoof" position="-1.173 2.557 -4.942" rotation="50.6 90 0" scale="6 3.250 0.2" color="#96514d">
+      </a-box>
+      <a-box id="frontRightRoof" position="1.255 2.571 -4.939" rotation="-50.6 90 0" scale="6 3.250 0.2"
+        color="#96514d">
+      </a-box>
+      <a-box id="backLeft" position="-1.824 0.993 -7.647" rotation="0 90 0" scale="0.2 2 0.2" color="#96514d"></a-box>
+      <a-box id="backRight" position="1.866 1 -7.545" rotation="0 90 0" scale="0.2 2 0.2" color="#96514d"></a-box>
+
+      <a-box id="fatherG" position="-0.045 0.495 -5.093" rotation="0 90 0" scale="0.2 1 0.2" color="#96514d"></a-box>
+      <a-plane id="track1" sound="src:#garin" scale="0.4 0.4 0.4" position="-0.027 0.971 -4.992" transparent
+        opacity="0.2">
+      </a-plane>
+      <a-plane id="infobox" position="-0.034 0.947 -4.991" rotation="0 0 0" scale="0.5 0.5 0.5" src="#fatherG">
+      </a-plane>
+      <a-entity id="text" color="#191817" text="value: Father Garin; align:center" position="-0.049 0.766 -4.987"
+        scale="1.122 1.466 1.273" shader="flat"></a-entity>
+      <!-- Play Button plaque -->
+      <a-plane id="playbox" src="#play" scale="0.12 0.12 0.01" position="-0.210 0.870 -4.9599" shader="flat"
+        transparent="true" songplayer1></a-plane>
+      <!-- Stop Button plaque -->
+      <a-plane id="stopbox" src="#stop" scale="0.12 0.12 0.01" position="0.164 0.870 -4.969" shader="flat"
+        transparent="true" songstopper1></a-plane>
+      <a-entity cursor="rayOrigin: mouse"></a-entity>
+
+      <!--House Aubert -->
+      <a-box id="aubert" position="-1.538 0.506 -3.116" rotation="0 90 0" scale="0.2 1 0.2" color="blue"></a-box>
+      <a-plane id="track3" sound="src:#sa" scale="0.4 0.4 0.4" position="-1.431 0.828 -3.116" rotation="0 90 0"
+        transparent opacity="0.2"></a-plane>
+      <a-plane id="infobox" position="-1.435 0.817 -3.138" rotation="0 90 0" scale="0.5 0.5 0.5" src="#aubert">
+      </a-plane>
+      <a-entity id="text" color="#191817" text="value: Suzanne Aubert; align:center" position="-1.422 0.619 -3.135"
+        scale="1.122 1.466 1.273" rotation="0 90 0" shader="flat"></a-entity>
+      <!-- Play Button plaque-->
+      <a-plane id="playbox" src="#play" scale="0.12 0.12 0.01" position="-1.431 .724 -2.968" rotation="0 90 0"
+        shader="flat" transparent="true" songplayer3></a-plane>
+      <!-- Stop Button plaque-->
+      <a-plane id="stopbox" src="#stop" scale="0.12 0.12 0.01" position="-1.431 .722 -3.286" rotation="0 90 0"
+        shader="flat" transparent="true" songstopper3></a-plane>
+      <a-entity cursor="rayOrigin: mouse"></a-entity>
+
+      <!--House McKillop-->
+      <a-box id="mackillop" position="-1.537 0.504 -6.788" rotation="0 90 0" scale="0.2 1 0.2" color="yellow"></a-box>
+      <a-plane id="track2" sound="src:#mm" scale="0.4 0.4 0.4" position="-1.437 0.826 -6.768" rotation="0 90 0"
+        transparent opacity="0.2"></a-plane>
+      <a-plane id="infobox" position="-1.435 0.817 -6.773" rotation="0 90 0" scale="0.5 0.5 0.5" src="#mackillop">
+      </a-plane>
+      <a-entity id="text" color="#191817" text="value: St Mary MacKillop; align:center" position="-1.424 0.628 -6.771"
+        scale="1.399 1.466 1.273" rotation="0 90 0" shader="flat"></a-entity>
+      <!-- Play Button plaque -->
+      <a-plane id="playbox" src="#play" scale="0.12 0.12 0.01" position="-1.422 0.737 -6.578" rotation="0 90 0"
+        shader="flat" transparent="true" songplayer2></a-plane>
+      <!-- Stop Button plaque -->
+      <a-plane id="stopbox" src="#stop" scale="0.12 0.12 0.01" rotation="0 90 0" position="-1.431 0.732 -6.955"
+        shader="flat" transparent="true" songstopper2></a-plane>
+
+      <!-- House barbier -->
+      <a-box id="barbier" position="1.538 0.506 -3.116" rotation="0 90 0" scale="0.2 1 0.2" color="green"></a-box>
+      <a-plane id="track5" sound="src:#aeb" scale="0.4 0.4 0.4" position="1.432 0.828 -3.116" rotation="0 -90 0"
+        transparent opacity="0.2"></a-plane>
+      <a-plane id="infobox" position="1.427 .817 -3.138" rotation="0 -90 0" scale="0.5 0.5 0.5" src="#barbier">
+      </a-plane>
+      <a-entity id="text" color="#191817" text="value: Adele Euphrasie Barbier; align:center"
+        position="1.426 0.619 -3.135" scale="1.122 1.466 1.273" rotation="0 -90 0" shader="flat"></a-entity>
+      <!-- Play Button plaque -->
+      <a-plane id="playbox" src="#play" scale="0.12 0.12 0.01" position="1.426 0.716 -2.955" rotation="0 -90 0"
+        shader="flat" transparent="true" songplayer5></a-plane>
+      <!-- Stop Button plaque -->
+      <a-plane id="stopbox" src="#stop" scale="0.12 0.12 0.01" position="1.426 0.721 -3.322" rotation="0 -90 0"
+        shader="flat" transparent="true" songstopper5></a-plane>
+      <!-- House mcauley -->
+      <a-box id="mcauley" position="1.538 0.506 -6.793" rotation="0 90 0" scale="0.2 1 0.2" color="red"></a-box>
+      <a-plane id="track6" sound="src:#cm" scale="0.4 0.4 0.4" position="1.432 0.828 -6.781" rotation="0 -90 0"
+        transparent opacity="0.2"></a-plane>
+      <a-plane id="infobox" position="1.427 0.817 -6.778" rotation="0 -90 0" scale="0.5 0.5 0.5" src="#mcauley">
+      </a-plane>
+      <a-entity id="text" color="#191817" text="value: Catherine McAuley ; align:center" position="1.426 0.619 -6.754"
+        scale="1.122 1.466 1.273" rotation="0 -90 0" shader="flat"></a-entity>
+      <!-- Play Button plaque -->
+      <a-plane id="playbox" src="#play" scale="0.12 0.12 0.01" position="1.426 0.716 -6.941" rotation="0 -90 0"
+        shader="flat" transparent="true" songplayer6></a-plane>
+      <!-- Stop Button plaque -->
+      <a-plane id="stopbox" src="#stop" scale="0.12 0.12 0.01" position="1.426 0.721 -6.596" rotation="0 -90 0"
+        shader="flat" transparent="true" songstopper6></a-plane> -->
+      <a-entity id="cameraRig">
+        <a-entity id="head" camera wasd-controls look-controls></a-entity>
+        <a-entity teleport-controls="cameraRig: #cameraRig; type: parabolic;
+button:
+trigger;collisionEntities:#floor" oculus-touch-controls="hand:
+right"></a-entity>
+        <a-entity laser-controls="hand:left" line="color: red"></a-entity>
+        <a-camera>
+        </a-camera>
+      </a-entity>
+      </a-link>
+  </a-scene>
+  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist
+/aframe-teleport-controls.min.js"></script>
+</body>
+
+</html>

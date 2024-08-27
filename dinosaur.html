@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <title>Dinosaur</title>
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="https://unpkg.com/aframe-environment-component/dist/aframe-environment-component.min.js"></script>
+  <script src="java/dinoAudioC.js"></script>
+  <script
+    src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+</head>
+
+<body>
+  <a-scene>
+    <a-assets>
+      <img id="park" src="resources/images/park360.jpeg">
+      <asset-item id="tri-obj" src="resources/images/dino1.obj" preload="auto"></asset-item>
+      <asset-item id="tri-mtl" src="resources/images/dinoSkin.png" preload="auto"></asset-item>
+      <audio id="dino" src="resources/audio/dino.mp3" preload="auto"></audio>
+      <img id="skyTexture" src="https://cdn.aframe.io/360-image-gallery-boilerplate/img/sechelt.jpg">
+      <img id="groundTexture" src="https://cdn.aframe.io/a-painter/images/floor.jpg">
+      <img id="play" src="resources/images/btnPlay.png" preload="auto">
+      <img id="pause" src="resources/images/btnPause.png" preload="auto">
+      <img id="stop" src="resources/images/btnStop.png" preload="auto">
+    </a-assets>
+    <a-entity environment="preset: forest; dressingAmount: 500"></a-entity>
+    <a-sky src="#skyTexture"></a-sky>
+    <a-obj-model id="3dModel_1" src="#tri-obj" material="src:#tri-mtl" position=" 0 .2 -5" rotation="-90 0 0"
+      scale=".5 .5 .5" animation="property: object3D.rotation.z; to: 2; dir: alternate; dur:3000; loop: true">
+    </a-obj-model>
+    <a-entity id=" cameraRig">
+      <a-entity id="head" camera wasd-controls look-controls>
+        <!--how is this affecting the movement?-->
+      </a-entity>
+      <a-entity teleport-controls="cameraRig: #cameraRig; type: parabolic; button: trigger;collisionEntities:#floor"
+        oculus-touch-controls="hand: right">
+        <!--how is this affecting the movement?-->
+      </a-entity>
+      <a-entity laser-controls="hand:left" line="color: red"></a-entity>
+      <!--what is this doing?-->
+      <a-camera>
+        <!-- why is this empty-->
+      </a-camera>
+      <a-box id="pedastal" position="-0.049 .090 -4.980" rotation="90 90 0" scale="5.5 2 .2" color="brown"></a-box>
+      <a-entity cursor="rayOrigin: mouse"></a-entity>
+      <a-box id="post" position="-1.060 0.495 -2.217" rotation="0 90 0" scale="0.2 1 0.2" color="#96514d"></a-box>
+      <a-plane id="track1" sound="src:#dino" scale="0.4 0.4 0.4" position="-1.066 0.947 -2.098" transparent
+        opacity="0.2">
+      </a-plane>
+      <a-plane id="infobox" position="-1.060 .952 -2.104" rotation="0 0 0" scale="0.5 0.5 0.5" color="#ffffff">
+      </a-plane>
+      <a-entity id="text" color="#191817" text="value: Dacentrurus; align:center" position="-1.069 0.840 -2.081"
+        scale="1.122 1.466 1.273" shader="flat"></a-entity>
+      <!-- Play Button plaque -->
+      <a-plane id="playbox" src="#play" scale="0.12 0.12 0.01" position="-1.225 0.949 -2.085" shader="flat"
+        transparent="true" songplayer1></a-plane>
+      <!-- Stop Button plaque -->
+      <a-plane id="stopbox" src="#stop" scale="0.12 0.12 0.01" position="-0.865 0.943 -2.085" shader="flat"
+        transparent="true" songstopper1></a-plane>
+      <a-entity cursor="rayOrigin: mouse">
+      </a-entity>
+      <a-link href="index.html" title="Home Page" position="-3.387 .815 -2.084">
+        <a-image src="#park"></a-image>
+      </a-link>
+      <a-entity id="cameraRig">
+        <a-entity id="head" camera wasd-controls look-controls></a-entity>
+        <a-entity teleport-controls="cameraRig: #cameraRig; type: parabolic;
+button:
+trigger;collisionEntities:#floor" oculus-touch-controls="hand:
+right"></a-entity>
+        <a-entity laser-controls="hand:left" line="color: red"></a-entity>
+        <a-camera>
+        </a-camera>
+      </a-entity>
+      </a-link>
+  </a-scene>
+  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist
+/aframe-teleport-controls.min.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--Doctype is declaring what type our document is-->
+<html lang="en">
+<!--This is the start of our site. The lang code declares what the native language our website should display in-->
+<!--Anything in the head is like your brain. It holds all the important information that happens behind the scenes to make our site work properly-->
+
+<head>
+  <!--To display an HTML page correctly, a web browser must know which character set to use.-->
+  <meta charset="utf-8">
+  <!--This gives the browser instructions on how to control the page's dimensions and scaling.The width=device-width part sets the width of the page to follow the screen-width of the device (which will vary depending on the device).The initial-scale=1.0 part sets the initial zoom level when the page is first loaded by the browser.-->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <!--This puts a title on the tab-->
+  <title>Digitech</title>
+  <!--This is linking to our stylesheet-->
+  <link href="style.css" rel="stylesheet" type="text/css" />
+  <!--This is linking to the aframe JavaScript code. It helps to make our website into a VR site-->
+  <script src="https://aframe.io/releases/1.3.0/aframe.min.js"></script>
+  <script src="java/videoControls.js"></script>
+  <script
+    src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist/aframe-teleport-controls.min.js"></script>
+</head>
+
+<!--Anything in the body is what is displayed on our website.-->
+
+<body>
+  <!--aScene sets the scene for our virtual site. All of the stuff displayed on our site needs to use the a-frame framework and it goes inside the opening and closing aScene-->
+  <a-scene cursor="rayOrigin: mouse">
+    <a-assets>
+      <img id="park" src="resources/images/park360.jpeg">
+      <!--Here we can list all of our assets and give them ID's which makes it easier to reference later on.-->
+      <img id="360image" src="resources/images/my_sky.jpg">
+      <!--id attribute is used to specify a unique id for an element. Cannot have more than one element with the same id. Crossorigin attribute sets the mode of the https request. It is a request for a resource from another domain. "annoymous" specifies the mode of the request:as a cross-origin request is preformed. No credentials are sent. Src tagspecifies the url or location of the image. Ideally we do not use a url as we have no control over that site. -->
+      <img id="wood_floor" src="resources/images/wood.jpg"></img>
+      <img id="wall" src="resources/images/wall.jpg"></img>
+      <img id="door" src=resources/images/door.jpg></img>
+      <!-- Images of the Pause, Play & Stop buttons -->
+      <img id="play" src="resources/images/btnPlay.png" preload="auto"></img>
+      <img id="pause" src="resources/images/btnPause.png" preload="auto"></img>
+      <img id="stop" src="resources/images/btnStop.png" preload="auto"></img>
+      <img id="tv_background" src="resources/images/tv_background.jpg" preload="auto">
+      <video id="pepeha" loop="true" src="resources/video/pepeha.mp4" preload="auto"></video>
+    </a-assets>
+    <!--Movement-->
+    <a-entity id=" cameraRig">
+      <a-entity id="head" camera wasd-controls look-controls>
+        <!--how is this affecting the movement?-->
+      </a-entity>
+      <a-entity teleport-controls="cameraRig: #cameraRig; type: parabolic; button: trigger;collisionEntities:#floor"
+        oculus-touch-controls="hand: right">
+        <!--how is this affecting the movement?-->
+      </a-entity>
+      <a-entity laser-controls="hand:left" line="color: red"></a-entity>
+      <!--what is this doing?-->
+      <a-camera>
+        <!-- why is this empty-->
+      </a-camera>
+    </a-entity>
+    <a-sky id="image-360" radius="10" src="#360image"></a-sky>
+    <!--Can you figure out what this code is doing?-->
+    <!--Building our Whare/House -->
+    <a-cylinder id="floor" position="0 0 0" radius="7.5" src="#wood_floor" height="0.1"></a-cylinder>
+    <!--a-cylinder creates tubes and curved surfaces-->
+    <a-box id="backWall" position="0 1.473 4.907" rotation="0 0 0" scale="10 3 0.2" src="#wall"></a-box>
+    <a-cylinder id="triangle_front" segments-radial="3" position="0 3.874 4.907" rotation="-90 0 0"
+      scale="5.774 0.2 1.8" color="#6db3a6"></a-cylinder>
+    <a-box id="frontWall" position="0 1.473 -4.907" rotation="0 0 0" scale="10 3 0.2" src="#wall"></a-box>
+    <a-cylinder id="triangle_back" segments-radial="3" position="0 3.874 -4.907" rotation="-90 0 0"
+      scale="5.774 0.2 1.8" color="#6db3a6"></a-cylinder>
+    <a-box id="leftWall" position="5.049 1.454 -0.008" rotation="0 -90 0" scale="10 3 0.2" src="#wall"></a-box>
+    <a-box id="rightWall" position="-5.049 1.454 -0.008" rotation="0 -90 0" scale="10 3 0.2" src="#wall"></a-box>
+    <a-box id="roof_left" position="-2.724 4.510 -0.129" rotation="28.433 -90 0" scale="10.931 0.20 6.282"
+      color="white"></a-box>
+    <a-box id="roof_right" position="2.684 4.328 0" rotation="28.433 90 0" scale="10.931 0.20 5.959" color="white">
+    </a-box>
+    <!-- Adding a video to your site-->
+    <a-entity>
+      <a-video src="#pepeha" position="-3.893 1.6 0" rotation="0 90 0" width="2" height="1.125"></a-video>
+      <!-- TV background -->
+      <a-plane id="videoControls" position="-3.893 0.854 0" scale="2 0.386 1.714" rotation="0 90 0" opacity="1"
+        src="#tv_background">
+        <!-- Play button -->
+        <a-plane id="vidplaybox" src="#play" scale="0.122 0.678 0.122" position="-0.350 0 .01" shader="flat"
+          transparent="true" videoplayer></a-plane>
+        <!-- Stop button -->
+        <a-plane id="vidpausebox" src="#pause" scale="0.122 0.678 0.122" position="0.350 0 .01" shader="flat"
+          transparent="true" videopauser></a-plane>
+      </a-plane>
+    </a-entity>
+
+    <a-entity cursor="rayOrigin: mouse"></a-entity>
+    <a-link href="index.html" title="Home Page" backgroundColor="black" position="-3.387 1.204 -4.492">
+      <a-image src="#park"></a-image>
+    </a-link>
+    <a-entity id="cameraRig">
+      <a-entity id="head" camera wasd-controls look-controls></a-entity>
+      <a-entity teleport-controls="cameraRig: #cameraRig; type: parabolic;
+button:
+trigger;collisionEntities:#floor" oculus-touch-controls="hand:
+right"></a-entity>
+      <a-entity laser-controls="hand:left" line="color: red"></a-entity>
+      <a-camera>
+      </a-camera>
+    </a-entity>
+    </a-link>
+  </a-scene>
+  <script src="https://rawgit.com/fernandojsg/aframe-teleport-controls/master/dist
+/aframe-teleport-controls.min.js"></script>
+</body>
+
+</html>
